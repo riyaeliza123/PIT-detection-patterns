@@ -1,5 +1,5 @@
 # PIT tag detection patterns
-
+## Prepare data
 First , identify the tags with most detections. Start by observing patterns in these tags:
 ```
 SELECT tag_id, count(*), 
@@ -125,5 +125,16 @@ SELECT
 FROM aggregated_data
 ORDER BY start_date, start_time
 ```
+## Methods of analysis
+### 1. Sankey diagram (plotly)
+For visualization, Sankey menthod was investigated. This does give an overall understanding of movement but fails to provide directionality. The code notebook has been archived. This looks like a good start. Probably this kind of mapping onto a geo map would be helpful. This is what an example map looks like: 
+<img width="731" alt="image" src="https://github.com/user-attachments/assets/077bd999-f7c7-43f1-b3f4-ce971ebbcbcd" />
 
-For visualization, Sankey menthod was investigated. This does give an over all understanding of movement but fails to provide directionality. The code notebook has been archived.
+The sankey diagram for tag_id = "989.001038869060" looks like this:
+<img width="699" alt="image" src="https://github.com/user-attachments/assets/d98e7bc7-5a19-445d-83f5-593e8f5a2c55" />
+
+Multiple issues at first glance: the nodes are not representative of the way antennas are located and again direction cannot be determined. Perhaps a similar approach on a geographic map will be better.
+
+
+
+
