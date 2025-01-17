@@ -19,36 +19,39 @@ Dwell time at each antenna (and number of continuous detections) can be helpful 
 1. Overview of movement using loc_code:
 ```
 WITH individual_tag_detected AS(
-  SELECT datetime, detection_date, detection_time, tag_id, loc_code 
+  SELECT tag_id, datetime, detection_date, detection_time, loc_code 
   FROM detections
-  WHERE  tag_id = '989.001038869060'
+--  WHERE  tag_id = '989.001038869060'
   ORDER BY datetime 
 ),
 ranked_data AS (
-    SELECT datetime, detection_date, detection_time, loc_code, ROW_NUMBER() OVER (ORDER BY datetime) AS row_id
+    SELECT tag_id, datetime, detection_date, detection_time, loc_code, ROW_NUMBER() OVER (ORDER BY datetime) AS row_id
     FROM individual_tag_detected
 ),
 grouped_data AS (
     SELECT 
+        tag_id,
         loc_code,
         datetime,
         detection_date,
         detection_time,
         row_id,
-        LAG(loc_code) OVER (ORDER BY row_id) AS prev_loc_code,
+        LAG(loc_code) OVER (PARTITION BY tag_id ORDER BY row_id) AS prev_loc_code,
         CASE 
-            WHEN LAG(loc_code) OVER (ORDER BY row_id) IS DISTINCT FROM loc_code THEN row_id
+            WHEN LAG(loc_code) OVER (PARTITION BY tag_id ORDER BY row_id) IS DISTINCT FROM loc_code THEN row_id
         END AS group_start
     FROM ranked_data
 ),
 group_ids AS (
     SELECT 
         *,
-        MAX(group_start) OVER (ORDER BY row_id) AS group_id
+        MAX(group_start) OVER (PARTITION BY tag_id ORDER BY row_id) AS group_id
     FROM grouped_data
+    -- WHERE tag_id = '989.001038869060'
 ),
 aggregated_data AS (
     SELECT 
+        tag_id,
         loc_code,
         MIN(detection_date) AS start_date,
         MIN(datetime) AS start_time,
@@ -56,9 +59,10 @@ aggregated_data AS (
         MAX(datetime) AS end_time,
         count(*) as number_of_detections
     FROM group_ids
-    GROUP BY loc_code, group_id
+    GROUP BY loc_code, group_id, tag_id
 )
 SELECT 
+    tag_id,
     loc_code,
     start_date,
     end_date,
@@ -73,38 +77,40 @@ ORDER BY start_date, start_time
 WITH individual_tag_detected AS (
     SELECT datetime, detection_date, detection_time, tag_id, loc_code, antenna
     FROM detections
-    WHERE tag_id = '989.001038869060'
+    -- WHERE tag_id = '989.001038869060'
     ORDER BY datetime
 ),
 ranked_data AS (
-    SELECT datetime, detection_date, detection_time, loc_code, antenna,
+    SELECT tag_id, datetime, detection_date, detection_time, loc_code, antenna,
            ROW_NUMBER() OVER (ORDER BY datetime) AS row_id
     FROM individual_tag_detected
 ),
 grouped_data AS (
     SELECT
+        tag_id,
         loc_code,
         antenna,
         datetime,
         detection_date,
         detection_time,
         row_id,
-        LAG(loc_code) OVER (ORDER BY row_id) AS prev_loc_code,
-        LAG(antenna) OVER (ORDER BY row_id) AS prev_antenna,
+        LAG(loc_code) OVER (PARTITION BY tag_id ORDER BY row_id) AS prev_loc_code,
+        LAG(antenna) OVER (PARTITION BY tag_id ORDER BY row_id) AS prev_antenna,
         CASE
-            WHEN LAG(loc_code) OVER (ORDER BY row_id) IS DISTINCT FROM loc_code
-                 OR LAG(antenna) OVER (ORDER BY row_id) IS DISTINCT FROM antenna THEN row_id
+            WHEN LAG(loc_code) OVER (PARTITION BY tag_id ORDER BY row_id) IS DISTINCT FROM loc_code
+                 OR LAG(antenna) OVER (PARTITION BY tag_id ORDER BY row_id) IS DISTINCT FROM antenna THEN row_id
         END AS group_start
     FROM ranked_data
 ),
 group_ids AS (
     SELECT
         *,
-        MAX(group_start) OVER (ORDER BY row_id) AS group_id
+        MAX(group_start) OVER (PARTITION BY tag_id ORDER BY row_id) AS group_id
     FROM grouped_data
 ),
 aggregated_data AS (
     SELECT
+        tag_id,
         loc_code,
         antenna,
         MIN(detection_date) AS start_date,
@@ -113,9 +119,10 @@ aggregated_data AS (
         MAX(datetime) AS end_time,
         COUNT(*) AS number_of_detections
     FROM group_ids
-    GROUP BY loc_code, antenna, group_id
+    GROUP BY loc_code, antenna, group_id, tag_id
 )
 SELECT
+    tag_id,
     loc_code,
     antenna,
     start_date,
@@ -123,6 +130,7 @@ SELECT
     end_time - start_time AS dwell_time,
     number_of_detections
 FROM aggregated_data
+-- WHERE tag_id = '989.001006676104'
 ORDER BY start_date, start_time
 ```
 ## Methods of analysis
