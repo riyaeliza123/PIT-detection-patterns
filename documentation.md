@@ -146,6 +146,19 @@ The sankey diagram for tag_id = "989.001038869060" looks like this:
 
 Multiple issues at first glance: the nodes are not representative of the way antennas are located and again direction cannot be determined. Perhaps a similar approach on a geographic map will be better. This code can be found in the "archived methods" folder.
 
+### 2. Unsupervised learning to create profiles
+#### 1. Data preperation:
+
+The columns needed are:
+1. tag_id
+2. subloc (upstream/downstream)
+3. Number of detections (per location, per event)
+4. Dwell time (during each detection event)
+
+#### 2. Method:
+
+1. Feature engineering - subloc into one-hot encoding
+2. Create a df where the columns are tag_id, subloc_sequence (a list showing the direction of the tag), detection_counts (list of all detection events), dwell_timings(list of all dwell times per detection event).
 
 
 
