@@ -155,6 +155,8 @@ The columns needed are:
 3. Number of detections (per location, per event)
 4. Dwell time (during each detection event)
 
+The dataset (data/sequence_df.csv) reads like this (the 3rd row for example): "The tag 989.001006608003 has been detected downstream, downsteam (different location) and then upstream. It was detected 40 times at the first location, then 4 times at the second location and again 4 times at the final upstream location. The tag spent 1043247.56 seconds (12 days) at the first downstream location and effectively not much time at the other two locations. 0 seconds mean that the tag moved around and did not really "dwell" at that area."
+
 #### 2. Method:
 
 1. Feature engineering - subloc into one-hot encoding
