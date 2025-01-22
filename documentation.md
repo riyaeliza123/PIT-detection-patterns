@@ -146,7 +146,7 @@ The sankey diagram for tag_id = "989.001038869060" looks like this:
 
 Multiple issues at first glance: the nodes are not representative of the way antennas are located and again direction cannot be determined. Perhaps a similar approach on a geographic map will be better. This code can be found in the "archived methods" folder.
 
-### 2. Unsupervised learning to create profiles
+### 2. Similarity scores to create profiles
 #### 1. Data preperation:
 
 The columns needed are:
@@ -161,6 +161,10 @@ The dataset (data/sequence_df.csv) reads like this (the 3rd row for example): "T
 
 1. Feature engineering - subloc into one-hot encoding
 2. Create a df where the columns are tag_id, subloc_sequence (a list showing the direction of the tag), detection_counts (list of all detection events), dwell_timings(list of all dwell times per detection event).
+3. Remove all cells with Nan values
+4. The goal is to create similarity scores of sorts. The magnitude of the score should be able to tell us about the relative movement of the tag. This would need multiplication/product operations. We have 0s in our dataset that holds meaning (in subloc it means upsteam and in dwell_times it means that the tag did not spend much time there). Multiplication could mean that we lose those factors. So, replace 0 with a near 0 value like a negative exponent of 1 (0.01 for example), so that we can keep the essence of the value and not lose the factor.
+5. Similarity score is calculated by dividing the dwell time with th detection count. This gives us the time for each detection(on average) in seconds. Then multiply these values with 0 or 0.01 (downstream/upsteam) based on the subloc_sequence column and sum them to get our "similarity scores".
+6. Sorting the dataframe based on the score helps identify profiles or groups that show similar behaviour. Since the scores are inflated and exist in 10,000 - 100,000 range, create a new column by dividing this value by 86400 to convert them into smaller vales. What this does is essencially convert seconds into days, thus smaller values.
 
 
 
