@@ -21,7 +21,7 @@ Dwell time at each antenna (and number of continuous detections) can be helpful 
 WITH individual_tag_detected AS(
   SELECT tag_id, datetime, detection_date, detection_time, loc_code 
   FROM detections
---  WHERE  tag_id = '989.001038869060'
+  WHERE tag_id IN (SELECT DISTINCT tag_id_long FROM outmigrant_return WHERE return = 1) and detection_date > DATE '2017-01-01' -- returns only and date being 2012 is a recording error
   ORDER BY datetime 
 ),
 ranked_data AS (
