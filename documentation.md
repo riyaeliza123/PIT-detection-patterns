@@ -66,6 +66,8 @@ SELECT
     loc_code,
     start_date,
     end_date,
+    start_time,
+    end_time,
     end_time - start_time as dwell_time,
     number_of_detections
 FROM aggregated_data
@@ -133,7 +135,15 @@ FROM aggregated_data
 -- WHERE tag_id = '989.001006676104'
 ORDER BY start_date, start_time
 ```
-## Methods of analysis
+## Analysis
+#### 1. Data preperation:
+
+#### 2. Method
+
+
+
+
+## Archived analysis
 ### 1. Sankey diagram (plotly)
 For visualization, Sankey menthod was investigated. This does give an overall understanding of movement but fails to provide directionality. This is what an example map looks like: 
 
@@ -165,6 +175,3 @@ The dataset (data/sequence_df.csv) reads like this (the 3rd row for example): "T
 4. The goal is to create similarity scores of sorts. The magnitude of the score should be able to tell us about the relative movement of the tag. This would need multiplication/product operations. We have 0s in our dataset that holds meaning (in subloc it means upsteam and in dwell_times it means that the tag did not spend much time there). Multiplication could mean that we lose those factors. So, replace 0 with a near 0 value like a negative exponent of 1 (0.01 for example), so that we can keep the essence of the value and not lose the factor.
 5. Similarity score is calculated by dividing the dwell time with th detection count. This gives us the time for each detection(on average) in seconds. Then multiply these values with 0 or 0.01 (downstream/upsteam) based on the subloc_sequence column and sum them to get our "similarity scores".
 6. Sorting the dataframe based on the score helps identify profiles or groups that show similar behaviour. Since the scores are inflated and exist in 10,000 - 100,000 range, create a new column by dividing this value by 86400 to convert them into smaller vales. What this does is essencially convert seconds into days, thus smaller values.
-
-
-
