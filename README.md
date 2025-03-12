@@ -2,7 +2,7 @@
 A set of workflows to learn about movement patterns of returning PIT tags and in-turn be able to profile and group those movements.
 Analysis is in pit_profiles.ipynb
 <br> 
-## IPYNB files:
+## Notebooks:
 1. **tag_summaries.ipynb** : A preliminary notebook to learn about a tag. The user can get information specific to a tag like the first and last date of detection, number of detections and more. It will assist downstream analytics and cross-examination. An [app](https://pit-tag-summary.streamlit.app/) has been created to make it easier for the user (no need to run the notebook for each analysis)
 2. **directionality.ipynb** : By looking at the movement of a tag through various location codes, decision rules are created to define "upstream" or "downstream" movements. If a movement is unfamiliar, it is called an "unknown" movement.
 3. **time_between_detections.ipynb** : A unique detection is defined as the first time the tag is detected at a given location code. This notebook calculates the time difference between each unique detection (end datetime of the previous detection - start datetime of the current detection).
