@@ -13,4 +13,5 @@ Analysis is in pit_profiles.ipynb
 2. Analysis about dead tags: [dead_tag.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation/dead_tags.md)
 <br>
 ## Streamlit apps created:
-1. Tag summary app: https://pit-tag-summary.streamlit.app/
+
+1. Tag summary app: [https://pit-tag-summary.streamlit.app/](https://pit-tag-summaries.streamlit.app/)
