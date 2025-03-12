@@ -9,7 +9,8 @@ Analysis is in pit_profiles.ipynb
 4. **pit_profiles.ipynb** : This notebook brings the directionality and time pieces (from 2 and 3) as well as adds a new column which tells us the number of times the tag was deteted a one specific location during a single, unique detection event. It is the final summary of all returning PIT tags. 
 
 ## Documentation:   
-File preperation, data generation: [documentation.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation.md)
+1. File preperation, data generation: [documentation.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation/documentation.md)
+2. Analysis about dead tags: [dead_tag.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation/dead_tags.md)
 <br>
 ## Streamlit apps created:
 1. Tag summary app: https://pit-tag-summary.streamlit.app/
