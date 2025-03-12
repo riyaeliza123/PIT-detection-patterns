@@ -1,5 +1,6 @@
 # PIT-detection-patterns
 A set of workflows to learn about movement patterns of returning PIT tags and in-turn be able to profile and group those movements.
+Analysis is in pit_profiles.ipynb
 <br> 
 ## IPYNB files:
 1. **tag_summaries.ipynb** : A preliminary notebook to learn about a tag. The user can get information specific to a tag like the first and last date of detection, number of detections and more. It will assist downstream analytics and cross-examination. An [app](https://pit-tag-summary.streamlit.app/) has been created to make it easier for the user (no need to run the notebook for each analysis)
