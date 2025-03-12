@@ -32,7 +32,7 @@ Check for tags with unusually large number of detections. We cannot naively conc
 
 In this query, the smaller the detection_rate, the more likely it is a dead tag, meaning in a small duration we see a lot of detections. Using detection_rate we can create a cut-off for what is likely a dead tag and what is not.
 
-The cut-off should not be a detection count, but a ratio. This is because as the project continues, detection ccounts are likely to increase and can cause false results.
+The cut-off should not be a detection count, but a ratio (like detection_rate). This is because as the project continues, detection counts are likely to increase and can cause false results when a stationary cut-off is enforced.
 
 ### Insights
 
