@@ -1,4 +1,4 @@
-## Dead tags
+# Dead tags
 
 Dead tags are tags that are present at the same locaton for extended period of time, they are stuck on an antenna or location.
 
@@ -42,7 +42,7 @@ The cut-off should not be a detection count, but a ratio (like detection_rate). 
 
 ### Interesting tags
 
-1. 989.001045836858 : Not a dead tag, but has 1463 detections over 175 days with a detection rate of 0.12. 
+1. 989.001045836858 : Not a dead tag, but has 1463 detections over 175 days with a detection rate of 0.12.
 
 ### Appendix
 
