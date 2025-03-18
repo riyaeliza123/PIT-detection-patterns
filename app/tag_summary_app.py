@@ -3,6 +3,7 @@ import pandas as pd
 
 detection_counts = pd.read_csv("data/most_detected_tags.csv")
 dwell_loc = pd.read_csv("data/loc_code_detection_patterns.csv")
+info = pd.read_csv("data/additional_tag_info.csv")
 
 # Convert date columns to datetime
 dwell_loc["start_date"] = pd.to_datetime(dwell_loc["start_date"])
@@ -18,7 +19,14 @@ if st.button("Search"):
         st.write(f"### Tag ID: {tag}")
         st.write(f"**Total number of detections:** {detection_counts[detection_counts['tag_id'] == tag]['count'].iloc[0]}")
         st.write(f"**Found in cleaning table?** {detection_counts[detection_counts['tag_id'] == tag]['in_cleaning_table'].iloc[0]}")
-        
+
+        info_tag = info[info.tag_id_long == tag]
+        if not info_tag.empty:
+            st.write(f"**Species:** {info_tag['species']}")
+            st.write(f"**Stock:** {info_tag['updated_stock']}")
+            st.write(f"**Source:** {info_tag['source']}")
+            st.write(f"**Tag Date:** {info_tag['tag_date']}")
+
         tag_dwell = dwell_loc[dwell_loc.tag_id == tag]
         if not tag_dwell.empty:
             st.write(f"**First detected:** {tag_dwell['start_date'].min()}")

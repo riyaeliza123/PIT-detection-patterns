@@ -141,3 +141,8 @@ GROUP BY d.tag_id, ct.tag_id_long
 ORDER BY count(*) DESC
 
 ```
+5. additional_tag_info.csv
+```
+SELECT tag_id_long, species, source, tag_date, updated_stock
+FROM outmigrant_return WHERE return = 1
+```
