@@ -22,10 +22,10 @@ if st.button("Search"):
 
         info_tag = info[info.tag_id_long == tag]
         if not info_tag.empty:
-            st.write(f"**Species:** {info_tag['species']}")
-            st.write(f"**Stock:** {info_tag['updated_stock']}")
-            st.write(f"**Source:** {info_tag['source']}")
-            st.write(f"**Tag Date:** {info_tag['tag_date']}")
+            st.write(f"**Species:** {info_tag['species'].iloc[0]}")
+            st.write(f"**Stock:** {info_tag['updated_stock'].iloc[0]}")
+            st.write(f"**Source:** {info_tag['source'].iloc[0]}")
+            st.write(f"**Tag Date:** {info_tag['tag_date'].iloc[0]}")
 
         tag_dwell = dwell_loc[dwell_loc.tag_id == tag]
         if not tag_dwell.empty:
