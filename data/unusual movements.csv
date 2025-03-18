@@ -1,4 +1,4 @@
-tag_id,loc_code,number_of_detections,dwell_time,movement_direction,time_between_detections
+tag_id,loc_code,number_of_detections,dwell_time,movement_direction,time_between_locations
 989.001034166386,"['61', '61', '61']","[1, 2, 1]","['0 days 00:00:00', '41 days 16:49:34.700000', '0 days 00:00:00']","['unknown', 'unknown']","[Timedelta('0 days 00:17:31.940000'), Timedelta('0 days 11:53:05.490000'), NaT]"
 989.001034167148,"['7B', '7A', '71']","[18, 8, 3]","['0 days 00:16:29.200000', '0 days 00:06:59.150000', '0 days 00:20:06']","['ds', 'unknown']","[Timedelta('0 days 00:00:24.840000'), NaT, NaT]"
 989.001034170131,"['7B', '7A', '7B', '7A', '7B', '71']","[1, 11, 1, 4, 1, 32]","['0 days 00:00:00', '0 days 01:22:09.380000', '0 days 00:00:00', '0 days 00:05:50.280000', '0 days 00:00:00', '0 days 04:19:05.180000']","['ds', 'us', 'ds', 'us', 'unknown']","[Timedelta('0 days 00:00:47.110000'), Timedelta('0 days 00:01:11.050000'), Timedelta('0 days 00:00:28.580000'), Timedelta('0 days 00:00:55.270000'), Timedelta('23 days 20:41:29.540000'), NaT]"

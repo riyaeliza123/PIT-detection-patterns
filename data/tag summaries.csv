@@ -1,4 +1,4 @@
-tag_id,loc_code,number_of_detections,dwell_time,movement_direction,time_between_detections
+tag_id,loc_code,number_of_detections,dwell_time,movement_direction,time_between_locations
 989.00100659888,"['61', '6A', '6B', '6A', '61']","[3, 1, 6, 1, 4]","['0 days 00:11:33.050000', '0 days 00:00:00', '0 days 02:25:31.380000', '0 days 00:00:00', '2 days 22:27:48.420000']","['us', 'us', 'ds', 'ds']","[Timedelta('0 days 00:15:36.770000'), Timedelta('0 days 00:15:46.650000'), Timedelta('0 days 00:08:37.690000'), Timedelta('0 days 00:16:47.650000'), NaT]"
 989.001006608003,"['22', '202', '201']","[10, 1, 1]","['12 days 01:47:27.590000', '0 days 00:00:00', '0 days 00:00:00']","['us', 'ds']","[Timedelta('14 days 21:54:52.150000'), Timedelta('0 days 00:05:54.750000'), NaT]"
 989.001006608062,"['6A', '6B', '6A', '6B', '6A']","[1, 6, 1, 14, 7]","['0 days 00:00:00', '0 days 00:15:31.480000', '0 days 00:00:00', '0 days 00:13:10.260000', '1 days 02:41:04.640000']","['us', 'ds', 'us', 'ds']","[Timedelta('0 days 00:00:06.370000'), Timedelta('0 days 00:00:16.130000'), Timedelta('0 days 00:04:59.590000'), Timedelta('0 days 00:00:42.250000'), NaT]"
