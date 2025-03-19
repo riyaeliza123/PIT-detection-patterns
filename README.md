@@ -10,7 +10,6 @@ A set of workflows to learn about movement patterns of returning PIT tags and in
 ## Documentation:   
 1. File preperation, data generation: [documentation.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation/documentation.md)
 2. Analysis about dead tags: [dead_tag.md](https://github.com/riyaeliza123/PIT-detection-patterns/blob/main/documentation/dead_tags.md)
-<br>
 
 ## Streamlit apps created:
 1. Tag summary app: [https://pit-tag-summary.streamlit.app/](https://pit-tag-summaries.streamlit.app/)
