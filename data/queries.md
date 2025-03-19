@@ -66,7 +66,7 @@ ORDER BY start_date, start_time
 WITH individual_tag_detected AS(
   SELECT tag_id, datetime, detection_date, detection_time, loc_code 
   FROM detections
-  WHERE tag_id IN (SELECT DISTINCT tag_id_long FROM outmigrant_return WHERE return = 1) and detection_date > DATE '2017-01-01' -- returns only and date being 2012 is a recording error
+  WHERE detection_date > DATE '2017-01-01' -- returns only and date being 2012 is a recording error
   ORDER BY datetime 
 ),
 ranked_data AS (
@@ -111,6 +111,8 @@ SELECT
     loc_code,
     start_date,
     end_date,
+    start_time,
+    end_time,
     end_time - start_time as dwell_time,
     number_of_detections
 FROM aggregated_data
@@ -136,7 +138,6 @@ SELECT tag_id, count(*),
 FROM detections d
 LEFT JOIN cleaning_table ct
 ON d.tag_id = ct.tag_id_long
-WHERE tag_id IN (SELECT DISTINCT tag_id_long FROM outmigrant_return WHERE return = 1)
 GROUP BY d.tag_id, ct.tag_id_long
 ORDER BY count(*) DESC
 
@@ -144,5 +145,5 @@ ORDER BY count(*) DESC
 5. additional_tag_info.csv
 ```
 SELECT tag_id_long, species, source, tag_date, updated_stock
-FROM outmigrant_return WHERE return = 1
+FROM outmigrant_return 
 ```
